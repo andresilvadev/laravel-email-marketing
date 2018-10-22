@@ -20,18 +20,9 @@ class CreateClientsTable extends Migration
             $table->string('last_name');
             $table->string('company');
             $table->string('email')->unique();
-            $table->tinyInteger('has_responded')->default(0);
-            $table->tinyInteger('is_suscribed')->default(0);
-            $table->integer('times_sent')->unsigned();
             $table->integer('group_id')->unsigned();
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('restrict');
             $table->timestamps();
-        });
-
-        Schema::table('clients', function(Blueprint $table){
-            $table->foreign('group_id')
-                ->references('id')
-                ->on('groups')
-                ->onDelete('restrict');
         });
     }
 

@@ -16,21 +16,12 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('client_id')->unsigned();
-            $table->integer('email_id')->unsigned();
             $table->string('email_to');
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->integer('email_id')->unsigned();
+            $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
             $table->timestamps();
-        });
-
-        Schema::table('transactions', function(Blueprint $table){
-            $table->foreign('client_id')
-                ->references('id')
-                ->on('clients')
-                ->onDelete('cascade');
-            $table->foreign('email_id')
-                ->references('id')
-                ->on('emails')
-                ->onDelete('cascade');
         });
     }
 

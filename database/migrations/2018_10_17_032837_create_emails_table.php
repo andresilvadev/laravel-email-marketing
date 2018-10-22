@@ -18,8 +18,7 @@ class CreateEmailsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('subject');
-            $table->string('path_thumbnail');
-            $table->string('path_to_email');
+            $table->string('body');
             $table->timestamps();
         });
     }

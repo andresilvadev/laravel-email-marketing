@@ -18,5 +18,15 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "codemirror": "^5.40.2",
+        "datatables.net": "^1.10.19",
+        "datatables.net-dt": "^1.10.19",
+        "imagesloaded": "^4.1.4",
+        "jquery-bridget": "^2.0.1",
+        "masonry-layout": "^4.2.2",
+        "summernote": "^0.8.10",
+        "sweetalert": "^2.1.0"
     }
 }
