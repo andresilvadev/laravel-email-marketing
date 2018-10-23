@@ -9,9 +9,7 @@ use Validator;
 class EmailsController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * EmailsController constructor.
      */
     public function __construct()
     {
@@ -19,9 +17,7 @@ class EmailsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -30,9 +26,7 @@ class EmailsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -63,17 +57,15 @@ class EmailsController extends Controller
             $email->subject = $request->input('subject');
 
             $email->save();
-            // $result = $email->save_content($request->content);
+
             return redirect('emails')->with('success','E-mail '. $email->name .' criado com sucesso!');
         }
 
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -82,18 +74,13 @@ class EmailsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $email = Email::findOrFail($id);
-        $file_path = $email->path_to_email;
-        $handle = fopen($file_path, 'r');
-        $content = fread($handle,filesize($file_path));
-        return view('emails.edit', compact('email', 'content'));
+        return view('emails.edit', compact('email'));
     }
 
 
@@ -101,7 +88,6 @@ class EmailsController extends Controller
      * @param Request $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, $id)
     {
@@ -121,8 +107,6 @@ class EmailsController extends Controller
             $email->name = $request->name;
             $email->subject = $request->subject;
             $email->save();
-
-            // $result = $email->save_content($request->getContent());
 
             return redirect('groups')->with('success', 'E-mail '. $email->name .' atualizado com sucesso!');
         }

@@ -16,17 +16,15 @@ Route::get('/', function () {
 });
 
 Route::resource('groups', 'GroupsController');
-
 Route::resource('clients', 'ClientsController');
-
 Route::resource('emails', 'EmailsController');
 
-Route::get('/send/{id}', 'SendController@choose_client');
-Route::get('/send/group/{id}', 'SendController@choose_group');
-Route::get('/send/review/{id_email}/{id_client}', 'SendController@review');
-Route::get('/send/group/review/{id_email}/{id_client}', 'SendController@review_group');
-Route::get('/send/{id_email}/{id_client}', 'SendController@send');
-Route::get('/send/group/{id_email}/{id_client}', 'SendController@send_to_group');
+// Envia e-mail para o usuário passando o id do usuário
+Route::get('/email/{id}', function ($id) {
+    $user = \App\User::findOrFail($id);
+    \Mail::to($user)->send(new \App\Mail\CampaignRegistered($user));
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

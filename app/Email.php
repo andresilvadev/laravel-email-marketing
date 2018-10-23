@@ -18,10 +18,4 @@ class Email extends Model
         'subject',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function transactions() {
-        return $this->hasMany('App\Transaction');
-    }
 }
