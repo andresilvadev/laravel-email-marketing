@@ -108,12 +108,11 @@ class ClientsController extends Controller
         return view('clients.edit', compact('client', 'groups'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -131,15 +130,16 @@ class ClientsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $client = new Client();
-            $client->name = $request->input('name');
-            $client->last_name = $request->input('last_name');
-            $client->email = $request->input('email');
-            $client->company = $request->input('company');
-            $client->group_id = $request->input('group_id');
-            $client->save();
+            $client = Client::findOrFail($id);
+            dd($client);
+            $client->name = $request->name;
+            $client->last_name = $request->last_name;
+            $client->email = $request->email;
+            $client->company = $request->company;
+            $client->group_id = $request->group_id;
+            $client->update();
 
-            return redirect('clients')->with('success','Cliente '. $client->name .' criado com sucesso!');
+            return redirect('clients')->with('success','Cliente '. $client->name .' autalizado com sucesso!');
         }
 
     }

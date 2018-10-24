@@ -20,6 +20,15 @@ class SendController extends Controller
         $this->middleware('auth');
     }
 
+    public function send_email($id)
+    {
+        $client = \App\Client::findOrFail($id);
+        \Mail::to($client)->send(new \App\Mail\Newsletter($client));
+
+    }
+
+
+    /*
     public function choose_client($id){
         $email = Email::findOrFail($id);
         $clients = Client::all();
@@ -79,4 +88,5 @@ class SendController extends Controller
         return redirect()->back();
 
     }
+    */
 }

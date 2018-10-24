@@ -5,6 +5,7 @@
 <hr>
 <div class="row">
 	<div class="col-md-offset-3 col-md-6">
+
 		<form action="{{ url('/clients/'.$client->id) }}" method="POST">
 			{{ method_field('PUT') }}
 			{{ csrf_field() }}

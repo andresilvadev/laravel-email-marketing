@@ -19,11 +19,14 @@ Route::resource('groups', 'GroupsController');
 Route::resource('clients', 'ClientsController');
 Route::resource('emails', 'EmailsController');
 
-// Envia e-mail para o usuário passando o id do usuário
+# Send email to user with id user in params
 Route::get('/email/{id}', function ($id) {
     $user = \App\User::findOrFail($id);
     \Mail::to($user)->send(new \App\Mail\CampaignRegistered($user));
 });
+
+# Send email to client with id user in params
+Route::get('/send_email/{id}','SendController@send_email');
 
 Auth::routes();
 
