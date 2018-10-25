@@ -12,21 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::resource('groups', 'GroupsController');
 Route::resource('clients', 'ClientsController');
 Route::resource('emails', 'EmailsController');
 
-# Send email to user with id user in params
-Route::get('/email/{id}', function ($id) {
-    $user = \App\User::findOrFail($id);
-    \Mail::to($user)->send(new \App\Mail\CampaignRegistered($user));
-});
-
 # Send email to client with id user in params
-Route::get('/send_email/{id}','SendController@send_email');
+Route::get('/send_email/{id}','SendController@send_email')->name('email.client');
+Route::get('/send_email_all_clients','SendController@send_all')->name('email.all.clients');
+
+Route::get('/config/email','EmailsController@config')->name('email.config');
 
 Auth::routes();
 

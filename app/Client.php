@@ -11,23 +11,7 @@ class Client extends Model
      */
     protected $fillable = [
         'name',
-        'last_name',
         'company',
-        'email',
-        'group_id',
+        'email'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function transactions() {
-        return $this->hasMany('App\Transaction');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function group() {
-        return $this->belongsTo('App\Group');
-    }
 }

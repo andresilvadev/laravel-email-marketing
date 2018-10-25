@@ -1,8 +1,9 @@
 
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+        <a class="navbar-brand" href="{{ url('/home') }}">
+            ES-Newsletter
+            {{--{{ config('app.name', 'Laravel') }}--}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -17,9 +18,6 @@
                     </li>
                     <li class="nav-item ml-2 {{ Request::is('emails')? 'active':'' }}">
                         <a class="nav-link" href="{{ url('/emails') }}">Emails</a>
-                    </li>
-                    <li class="nav-item ml-2 {{ Request::is('groups')? 'active':'' }}">
-                        <a class="nav-link" href="{{ url('/groups') }}">Groups</a>
                     </li>
                 @endif
             </ul>
@@ -52,6 +50,9 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
+
+                            <a class="dropdown-item" href="{{ route('email.config') }}">Config e-mail</a>
+
                         </div>
                     </li>
                 @endguest

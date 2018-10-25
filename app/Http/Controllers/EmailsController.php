@@ -41,7 +41,8 @@ class EmailsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:emails|max:255',
-            'subject' => 'required|max:45',
+            'subject' => 'required|max:70',
+            'body' => 'required',
         ]);
 
         if($validator->fails()){
@@ -120,5 +121,9 @@ class EmailsController extends Controller
     public function destroy(Email $email)
     {
         return redirect()->route('groups.index')->with('success','E-mail '. $email->name .' deletado com sucesso');
+    }
+
+    public function config() {
+
     }
 }

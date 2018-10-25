@@ -17,11 +17,8 @@ class CreateClientsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('last_name');
             $table->string('company');
             $table->string('email')->unique();
-            $table->integer('group_id')->unsigned();
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('restrict');
             $table->timestamps();
         });
     }

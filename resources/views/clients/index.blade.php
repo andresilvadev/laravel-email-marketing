@@ -26,21 +26,33 @@
 	<table id="clients_table" class="table table-hover table-light">
 		<thead>
             <tr>
-                <th>#</th>
-				<th>Empresa</th>
-				<th>E-mail</th>
+                <th>Cod</th>
 				<th>Nome</th>
-				<th>Grupo</th>
+				<th>E-mail</th>
+				<th>Empresa</th>
+				<th width="220px" class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
 			@foreach ($clients as $client)
 				<tr>
 					<td>{{ $client->id }}</td>
-					<td>{{ $client->company }}</td>
+					<td>{{ $client->name }}</td>
 					<td>{{ $client->email }}</td>
-					<td>{{ $client->name." ".$client->last_name }}</td>
-					<td>{{ $client->group->name }}</td>
+					<td>{{ $client->company }}</td>
+					<td>
+						<form action="{{ route('clients.destroy',$client->id) }}" method="POST">
+
+							<a class="btn btn-secondary" href="{{ route('clients.show',$client->id) }}">Visualizar</a>
+
+							<a class="btn btn-success" href="{{ route('clients.edit',$client->id) }}">Editar</a>
+
+							@csrf
+							@method('DELETE')
+
+							<button type="submit" class="btn btn-danger">Deletar</button>
+						</form>
+					</td>
 				</tr>
 			@endforeach
 		</tbody>

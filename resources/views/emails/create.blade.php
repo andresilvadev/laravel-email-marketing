@@ -31,7 +31,8 @@
 	</div>
 
 	<div class="input-group">
-		<textarea class="form-control" id="summernote" name="content"></textarea>
+		{{--<textarea class="form-control" id="summernote" name="body"></textarea>--}}
+		<textarea class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="summernote" name="body"></textarea>
 	</div>
 
 	<br>

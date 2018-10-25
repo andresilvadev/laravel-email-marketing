@@ -3,19 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Client;
-use App\Group;
-
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use JavaScript;
 use Validator;
 
 class ClientsController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * ClientsController constructor.
      */
     public function __construct()
     {
@@ -23,46 +17,32 @@ class ClientsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         $clients = Client::paginate(10);
-
-        JavaScript::put([
-            'url' => url('clients').'/',
-        ]);
-
         return view('clients.index', compact('clients'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        $groups = Group::all();
-        return view('clients.create',compact('groups'));
+        return view('clients.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:groups|max:70',
-            'last_name' => 'required',
+            'name' => 'required',
             'email' => 'required',
-            'company' => 'required',
-            'group_id' => 'required',
+            'company' => 'required'
         ]);
 
         if($validator->fails()){
@@ -73,10 +53,8 @@ class ClientsController extends Controller
         } else {
             $client = new Client();
             $client->name = $request->input('name');
-            $client->last_name = $request->input('last_name');
             $client->email = $request->input('email');
             $client->company = $request->input('company');
-            $client->group_id = $request->input('group_id');
             $client->save();
 
             return redirect('clients')->with('success','Cliente '. $client->name .' criado com sucesso!');
@@ -84,44 +62,35 @@ class ClientsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Client $client
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        $client = Client::findOrFail($id);
-        return view('clients.show', compact('client'));
+        return view('clients.show',compact('client'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Client $client
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        $client = Client::findOrFail($id);
-        $groups = Group::all();
-        return view('clients.edit', compact('client', 'groups'));
+        return view('clients.edit', compact('client'));
     }
 
 
     /**
      * @param Request $request
-     * @param $id
+     * @param Client $client
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Client $client)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:groups|max:70',
-            'last_name' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'company' => 'required',
-            'group_id' => 'required',
         ]);
 
         if($validator->fails()){
@@ -130,45 +99,19 @@ class ClientsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $client = Client::findOrFail($id);
-            dd($client);
-            $client->name = $request->name;
-            $client->last_name = $request->last_name;
-            $client->email = $request->email;
-            $client->company = $request->company;
-            $client->group_id = $request->group_id;
-            $client->update();
-
-            return redirect('clients')->with('success','Cliente '. $client->name .' autalizado com sucesso!');
+            $client->update($request->all());
+            return redirect('clients')->with('success','Cliente '. $request->name .' autalizado com sucesso!');
         }
-
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Client $client
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        try {
-            $cliente = Client::findOrFail($id);
-        } catch(\Exception $exception){
-            dd($exception);
-            $errormsg = 'No Customer to de!' . $exception->getCode();
-            return Response::json(['errormsg'=>$errormsg]);
-        }
-
-        $result = $cliente->delete();
-        if ($result) {
-            $cliente_response['result'] = true;
-            $cliente_response['message'] = "Customer Successfully Deleted!";
-        } else {
-            $cliente_response['result'] = false;
-            $cliente_response['message'] = "Customer was not Deleted, Try Again!";
-        }
-        return json_encode($cliente_response, JSON_PRETTY_PRINT);
-
+        $client->delete();
+        return redirect()->route('clients.index')->with('success','Cliente excluído com sucesso!');
     }
 }

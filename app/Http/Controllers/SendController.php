@@ -10,83 +10,45 @@ use JavaScript;
 
 class SendController extends Controller
 {
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * SendController constructor.
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @param $id
+     * Send email for only one user
+     */
     public function send_email($id)
     {
         $client = \App\Client::findOrFail($id);
         \Mail::to($client)->send(new \App\Mail\Newsletter($client));
-
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * Send email for all clients
+     */
+    public function send_all()
+    {
+        $clients = \App\Client::all();
+        $count = 0;
 
-    /*
-    public function choose_client($id){
-        $email = Email::findOrFail($id);
-        $clients = Client::all();
-        JavaScript::put([
-            'url' => url('send/review/'.$email->id).'/',
-        ]);
-        return view('send.clients', compact('email', 'clients'));
-    }
+        if($clients->count() > 0) {
+            foreach ($clients as $client) {
+                $client = \App\Client::findOrFail($client->id);
+                \Mail::to($client)->send(new \App\Mail\Newsletter($client));
+                $count++;
+            }
 
-    public function choose_group($id){
-        $email = Email::findOrFail($id);
-        $groups = Group::all();
-        JavaScript::put([
-            'url' => url('send/group/review/'.$email->id).'/',
-        ]);
-        return view('send.group', compact('email','groups'));
-    }
-
-    public function review($id_email, $id_client){
-        $email = Email::findOrFail($id_email);
-        $client = Client::findOrFail($id_client);
-        return view('send.review',compact('email','client'));
-    }
-
-    public function review_group($id_email, $id_group){
-        $email = Email::findOrFail($id_email);
-        $group = Group::findOrFail($id_group);
-        return view('send.group.review',compact('email','group'));
-    }
-
-    public function send($id_email, $id_client){
-        $email = Email::findOrFail($id_email);
-        $client = Client::findOrFail($id_client);
-
-        if($email->send($client)){
-            flash()->success('Email sent', 'The email was sent to '.$client->email.' successfully.');
-            return redirect('emails/'.$email->id);
-        }else{
-            flash()->error('Not sent', 'Unable to send email to '.$client->email);
-            return redirect()->back();
+            return redirect('home')->with('success','Enviado '. $count . ' e-mails com sucesso para sua lista de clientes');
+        } else {
+            return redirect('home')->with('fail','Não existem clientes cadastrados para envio de e-mails');
         }
     }
 
-    public function send_to_group($id_email, $id_group){
-        $email = Email::findOrFail($id_email);
-        $group = Group::findOrFail($id_group);
-
-        $num_of_emails = $group->clients->count();
-        $num_of_emails_sent = $email->send_group($group);
-
-        if($num_of_emails == $num_of_emails_sent){
-            flash()->success('All emails sent', 'There were '.$num_of_emails_sent.' emails successfully sent.');
-            return redirect('emails/'.$email->id);
-        }
-        flash()->overlay('Some emails where not sent',
-            'Unable to send '.$num_of_emails-$num_of_emails_sent.' out of '.$num_of_emails.'emails.', 'error');
-        return redirect()->back();
-
-    }
-    */
 }

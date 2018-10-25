@@ -84,7 +84,8 @@
                                 <td align="left"
                                     style="font-size: 15px; font-family: Helvetica, Arial, sans-serif; line-height: 25px; color:#222222;"
                                     id="content-5">
-                                    <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;">Hola {{ $clientName }}!</p>
+                                    <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;">
+                                            Hola {{ $clientName }}!</p>
                                         <p style="margin-top: 0px; margin-bottom: 10px;">Mi nombre es Luis Espinosa CEO
                                             de Pool Report System.</p>
                                         <p style="margin-top: 0px; margin-bottom: 10px;">Hemos detectado que en
@@ -136,14 +137,14 @@
                                     style="font-size: 15px; font-family: Helvetica, Arial, sans-serif; line-height: 25px; color:#222222;"
                                     id="content-9">
                                     <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;"><a
-                                                href="https://youtu.be/IxGH1wFJvIY" target="_blank"
-                                                style="color: #39aad4;">https://vimeo.com/151531280</a></p>
+                                                    href="https://youtu.be/IxGH1wFJvIY" target="_blank"
+                                                    style="color: #39aad4;">https://vimeo.com/151531280</a></p>
                                         <p style="margin-top: 0px; margin-bottom: 10px;">Dime cuando estas disponible y
                                             nos podemos reunir, para platicar sobre tus necesidades.</p>
                                         <p style="margin-top: 0px; margin-bottom: 10px;">Este es nuestro sitio web:</p>
                                         <p style="margin-top: 0px; margin-bottom: 10px;"><a
-                                                href="https://www.poolreportsystem.com/es/" target="_blank"
-                                                style="color: #39aad4;">https://www.poolreportsystem.
+                                                    href="https://www.poolreportsystem.com/es/" target="_blank"
+                                                    style="color: #39aad4;">https://www.poolreportsystem.
                                                 <wbr>
                                                 com/es/</a></p>
                                     </div>
@@ -171,9 +172,7 @@
                                         <tbody>
                                         <tr>
                                             <td width="100" align="left" valign="middle" style="padding-bottom: 10px;">
-                                                <img
-                                                    src="https://bucket.mlcdn.com/a/389/389561/images/abd6efccdc034ab611ca12bf7f46d1cf8b77eed7.png/901b63dc311d6c21f58aa4875cf5d6c8091cbb0d.png"
-                                                    width="100" border="0" style="display: block;">
+                                                <img src="{{asset('images/logo-es.pg')}}" width="100" border="0" style="display: block;">
                                             </td>
                                             <td width="20"></td>
                                             <td align="left"
@@ -242,7 +241,7 @@
             </table>
 
             <span
-                style="display:none; white-space:nowrap; font:15px courier; line-height:0;">                                                           </span>
+                    style="display:none; white-space:nowrap; font:15px courier; line-height:0;">                                                           </span>
         </td>
     </tr>
     </tbody>
