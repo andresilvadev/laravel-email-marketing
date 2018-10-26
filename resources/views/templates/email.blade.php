@@ -172,7 +172,7 @@
                                         <tbody>
                                         <tr>
                                             <td width="100" align="left" valign="middle" style="padding-bottom: 10px;">
-                                                <img src="{{asset('images/logo-es.pg')}}" width="100" border="0" style="display: block;">
+                                                <img src="{{asset('imagens')}}" width="100" border="0" style="display: block;">
                                             </td>
                                             <td width="20"></td>
                                             <td align="left"

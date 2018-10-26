@@ -19,6 +19,9 @@
                     <li class="nav-item ml-2 {{ Request::is('emails')? 'active':'' }}">
                         <a class="nav-link" href="{{ url('/emails') }}">Emails</a>
                     </li>
+                    <li class="nav-item ml-2 {{ Request::is('imagens')? 'active':'' }}">
+                        <a class="nav-link" href="{{ url('/imagens') }}">Imagens</a>
+                    </li>
                 @endif
             </ul>
 
