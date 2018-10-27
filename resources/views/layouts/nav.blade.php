@@ -13,11 +13,14 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @if(!Auth::guest())
+                    <li class="nav-item ml-2 {{ Request::is('home')? 'active':'' }}">
+                        <a class="nav-link"  href="{{ url('/home') }}">Enviar campanhas</a>
+                    </li>
                     <li class="nav-item ml-2 {{ Request::is('clients')? 'active':'' }}">
-                        <a class="nav-link"  href="{{ url('/clients') }}">Clients</a>
+                        <a class="nav-link"  href="{{ url('/clients') }}">Clientes</a>
                     </li>
                     <li class="nav-item ml-2 {{ Request::is('emails')? 'active':'' }}">
-                        <a class="nav-link" href="{{ url('/emails') }}">Emails</a>
+                        <a class="nav-link" href="{{ url('/emails') }}">E-mails</a>
                     </li>
                     <li class="nav-item ml-2 {{ Request::is('imagens')? 'active':'' }}">
                         <a class="nav-link" href="{{ url('/imagens') }}">Imagens</a>

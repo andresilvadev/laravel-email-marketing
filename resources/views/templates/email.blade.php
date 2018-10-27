@@ -85,15 +85,13 @@
                                     style="font-size: 15px; font-family: Helvetica, Arial, sans-serif; line-height: 25px; color:#222222;"
                                     id="content-5">
                                     <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;">
-                                            Hola {{ $clientName }}!</p>
-                                        <p style="margin-top: 0px; margin-bottom: 10px;">Mi nombre es Luis Espinosa CEO
-                                            de Pool Report System.</p>
-                                        <p style="margin-top: 0px; margin-bottom: 10px;">Hemos detectado que en
-                                            Batz-Kunde, tienes control de una gran cantidad de albercas. Y creemos que
-                                            se pueden beneficiar muchísimo automatizando parte de la administración con
-                                            nuestro software administrativo de albas.</p>
-                                        <p style="margin-top: 0px; margin-bottom: 10px;">Aquí está el video de 2 min que
-                                            explica de que se trata nuestro software:</p></div>
+                                            Olá {{ $clientName }}!</p>
+                                        <p style="margin-top: 0px; margin-bottom: 10px;">Neste mês estamos realizando novas campanhas promocionais, veja o
+                                            que preparamos para você! </p>
+                                        <p style="margin-top: 0px; margin-bottom: 10px;">A partir do início do mes de dezembro, estaremos com todo nosso
+                                            estoque com 25%, 50% e 75% de desconto para clientes diamante. Para aderir
+                                            a esta promoção bastar apenas levar este código promocional enviado abaixo.</p>
+                                        <p style="margin-top: 0px; margin-bottom: 10px;">Seu código promocional para compras é: <strong>358436</strong> </p></div>
                                 </td>
                             </tr>
                             </tbody>
@@ -139,14 +137,12 @@
                                     <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;"><a
                                                     href="https://youtu.be/IxGH1wFJvIY" target="_blank"
                                                     style="color: #39aad4;">https://vimeo.com/151531280</a></p>
-                                        <p style="margin-top: 0px; margin-bottom: 10px;">Dime cuando estas disponible y
-                                            nos podemos reunir, para platicar sobre tus necesidades.</p>
-                                        <p style="margin-top: 0px; margin-bottom: 10px;">Este es nuestro sitio web:</p>
-                                        <p style="margin-top: 0px; margin-bottom: 10px;"><a
-                                                    href="https://www.poolreportsystem.com/es/" target="_blank"
-                                                    style="color: #39aad4;">https://www.poolreportsystem.
-                                                <wbr>
-                                                com/es/</a></p>
+                                        <p style="margin-top: 0px; margin-bottom: 10px;">Assista o video da nossa campanha de natal e faça seu natal mais feliz.</p>
+                                        <p style="margin-top: 0px; margin-bottom: 10px;">Dúvidas entrar em contato através do nosso site:</p>
+                                        <p style="margin-top: 0px; margin-bottom: 10px;">
+                                            <a href="https://www.poolreportsystem.com/es/" target="_blank" style="color: #39aad4;">
+                                                https://www.poolreportsystem.com/es/</a>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -171,16 +167,19 @@
                                     <table cellpadding="0" border="0" cellspacing="0" align="left" class="devicewidth">
                                         <tbody>
                                         <tr>
-                                            <td width="100" align="left" valign="middle" style="padding-bottom: 10px;">
-                                                <img src="{{asset('imagens')}}" width="100" border="0" style="display: block;">
+                                            <td width="140" align="left" valign="middle" style="padding-bottom: 10px;">
+                                                <img src="{{asset('uploads/imagens/'. $imageName )}}" width="140" border="0" style="display: block;">
                                             </td>
                                             <td width="20"></td>
                                             <td align="left"
                                                 style="font-size: 14px; font-family: Helvetica, Arial, sans-serif; line-height: 23px; color:#222222;"
                                                 id="content-11">
-                                                <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;">
-                                                        <strong>Luis Espinosa de los Monteros</strong><br>CEO of Pool
-                                                        Report System</p></div>
+                                                <div class="text">
+                                                    <p style="margin-top: 0px; margin-bottom: 10px;">
+                                                        <strong>Luis Espinosa de los Monteros</strong><br>
+                                                        Diretor de marketing
+                                                    </p>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -230,7 +229,12 @@
                     <td align="center"
                         style="font-family: Arial, Helvetica, sans-serif; color: #666666; font-size:12px; line-height:18px; "
                         id="content-12">
-                        <div class="text"><p style="margin-top: 0px; margin-bottom: 10px;">Pool Report System 2016</p>
+                        <div class="text">
+                            <p style="margin-top: 0px; margin-bottom: 10px;">ES SISTEMAS - (42) 99915-6528</p>
+                            <p style="margin-top: 0px; margin-bottom: 10px;">
+                                <a href="http://www.es-sistemas.com.br/" target="_blank" style="color: #39aad4;">
+                                    http://www.es-sistemas.com.br/</a>
+                            </p>
                         </div>
                     </td>
                 </tr>

@@ -17,12 +17,14 @@
 @endif
 
 <div class="clearfix">
+	<a href="#" class="btn btn-secondary float-right ml-2">Importar clientes CSV</a>
 	<a href="{{ url('clients/create') }}" class="btn btn-primary float-right">Cadastrar novo cliente</a>
 </div>
 
 <br>
 
 <div class="clearfix">
+	<div class="table-responsive-sm">
 	<table id="clients_table" class="table table-hover table-light">
 		<thead>
             <tr>
@@ -41,22 +43,29 @@
 					<td>{{ $client->email }}</td>
 					<td>{{ $client->company }}</td>
 					<td>
-						<form action="{{ route('clients.destroy',$client->id) }}" method="POST">
+						<form id="frm_{{ $client->id }}" action="{{ route('clients.destroy',$client->id) }}" method="POST">
+							<div class="row">
+								<div class="col-sm-12 col-md-4">
+									<a class="btn btn-secondary btn-sm btn-block" href="{{ route('clients.show',$client->id) }}">Mostrar</a>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<a class="btn btn-success btn-sm btn-block" href="{{ route('clients.edit',$client->id) }}">Editar</a>
+								</div>
 
-							<a class="btn btn-secondary" href="{{ route('clients.show',$client->id) }}">Visualizar</a>
+								@csrf
+								@method('DELETE')
 
-							<a class="btn btn-success" href="{{ route('clients.edit',$client->id) }}">Editar</a>
-
-							@csrf
-							@method('DELETE')
-
-							<button type="submit" class="btn btn-danger">Deletar</button>
+								<div class="col-sm-12 col-md-4">
+									<a href="javascript:if(confirm('Deseja realmente excluír este cliente?')) $('#frm_{{$client->id}}').submit()" class="btn btn-danger btn-sm btn-block">Deletar</a>
+								</div>
+							</div>
 						</form>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
+	</div>
 
 	{!! $clients->links() !!}
 </div>

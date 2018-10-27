@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Client;
+use App\Image;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -15,15 +16,20 @@ class Newsletter extends Mailable
      * @var Client
      */
     private $client;
+    /**
+     * @var Image
+     */
+    private $image;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, Image $image)
     {
         $this->client = $client;
+        $this->image = $image;
     }
 
     /**
@@ -37,6 +43,7 @@ class Newsletter extends Mailable
             ->with([
                 'clientName' => $this->client->name . " " . $this->client->last_name,
                 'clientCompany' => $this->client->company,
+                'imageName' => $this->image->url
             ]);
     }
 }

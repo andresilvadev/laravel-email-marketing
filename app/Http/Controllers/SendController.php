@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\Email;
 use App\Group;
+use App\Image;
 use Illuminate\Http\Request;
 use JavaScript;
 
@@ -41,7 +42,8 @@ class SendController extends Controller
         if($clients->count() > 0) {
             foreach ($clients as $client) {
                 $client = \App\Client::findOrFail($client->id);
-                \Mail::to($client)->send(new \App\Mail\Newsletter($client));
+                $image = \App\Image::findOrFail('17'); // Enviando manualmente a imagem id
+                \Mail::to($client)->send(new \App\Mail\Newsletter($client, $image));
                 $count++;
             }
 
