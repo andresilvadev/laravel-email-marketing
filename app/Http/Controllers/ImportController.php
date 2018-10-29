@@ -49,13 +49,12 @@ class ImportController extends Controller
         $csv_data = json_decode($data->csv_data, true);
 
         foreach ($csv_data as $row) {
+
+            //print_r($row[2]); // ROW NA POSIÇÃO 2 PEGA CADA EMAIL
+
             $client = new Client();
             foreach (config('app.db_fields') as $index => $field) {
-                if ($data->csv_header) {
-                    $client->$field = $row[$request->fields[$field]];
-                } else {
-                    $client->$field = $row[$request->fields[$index]];
-                }
+                $client->$field = $row[$request->fields[$index]];
             }
             $client->save();
         }
