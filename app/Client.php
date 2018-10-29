@@ -10,8 +10,8 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'company',
+        'nome',
+        'empresa',
         'email'
     ];
 }

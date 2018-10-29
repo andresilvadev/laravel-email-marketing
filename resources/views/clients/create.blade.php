@@ -22,16 +22,16 @@
 		<div class="col-md-offset-3 col-md-6">
 
 				<div class="form-group">
-					<label for="name">Nome:</label>
-					<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}">
+					<label for="nome">Nome:</label>
+					<input type="text" class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}" name="nome" value="{{ old('nome') }}">
 				</div>
 				<div class="form-group">
 					<label for="email">E-mail:</label>
 					<input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}">
 				</div>
 				<div class="form-group">
-					<label for="company">Empresa:</label>
-					<input type="text" class="form-control {{ $errors->has('company') ? 'is-invalid' : '' }}" name="company" value="{{ old('company') }}">
+					<label for="empresa">Empresa:</label>
+					<input type="text" class="form-control {{ $errors->has('empresa') ? 'is-invalid' : '' }}" name="empresa" value="{{ old('empresa') }}">
 				</div>
 				<hr>
 				<button type="submit" class="btn btn-primary btn-lg">Cadatrar novo cliente</button>

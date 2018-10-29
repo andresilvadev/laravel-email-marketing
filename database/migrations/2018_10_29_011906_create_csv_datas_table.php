@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientsTable extends Migration
+class CreateCsvDatasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('csv_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('empresa');
-            $table->string('email')->unique();
+            $table->string('csv_filename');
+            $table->boolean('csv_header')->default(0);
+            $table->longText('csv_data');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('csv_data');
     }
 }

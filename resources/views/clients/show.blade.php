@@ -9,16 +9,16 @@
 					Informações do cliente
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">{{ $client->name }}</h5>
-					<p class="card-text">Empresa: {{ $client->company }}</p>
-					<p class="card-text">E-mail: {{ $client->email }}</p>
-					<p class="card-text">Criado em: {{ $client->created_at->format("d-m-Y") }} às {{ $client->created_at->format("h:m:s") }}</p>
+					<h5 class="card-title">{{ $cliente->name }}</h5>
+					<p class="card-text">Empresa: {{ $cliente->company }}</p>
+					<p class="card-text">E-mail: {{ $cliente->email }}</p>
+					<p class="card-text">Criado em: {{ $cliente->created_at->format("d-m-Y") }} às {{ $cliente->created_at->format("h:m:s") }}</p>
 
 					<hr>
 
-						<form class="float-right" action="{{ route('clients.destroy',$client->id) }}" method="POST">
+						<form class="float-right" action="{{ route('clientes.destroy',$cliente->id) }}" method="POST">
 
-							<a class="btn btn-success" href="{{ route('clients.edit',$client->id) }}">Editar</a>
+							<a class="btn btn-success" href="{{ route('clientes.edit',$cliente->id) }}">Editar</a>
 
 							@csrf
 							@method('DELETE')

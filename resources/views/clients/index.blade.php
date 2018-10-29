@@ -17,7 +17,7 @@
 @endif
 
 <div class="clearfix">
-	<a href="#" class="btn btn-secondary float-right ml-2">Importar clientes CSV</a>
+	<a href="{{ url('import') }}" class="btn btn-secondary float-right ml-2">Importar clientes CSV</a>
 	<a href="{{ url('clients/create') }}" class="btn btn-primary float-right">Cadastrar novo cliente</a>
 </div>
 
@@ -39,9 +39,9 @@
 			@foreach ($clients as $client)
 				<tr>
 					<td>{{ $client->id }}</td>
-					<td>{{ $client->name }}</td>
+					<td>{{ $client->nome }}</td>
 					<td>{{ $client->email }}</td>
-					<td>{{ $client->company }}</td>
+					<td>{{ $client->empresa }}</td>
 					<td>
 						<form id="frm_{{ $client->id }}" action="{{ route('clients.destroy',$client->id) }}" method="POST">
 							<div class="row">

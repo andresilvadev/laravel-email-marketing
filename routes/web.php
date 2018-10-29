@@ -15,8 +15,14 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('clients', 'ClientsController');
 Route::resource('emails', 'EmailsController');
+
+Route::resource('clients', 'ClientsController');
+
+Route::get('/import', 'ImportController@getImport')->name('import');
+Route::post('/import_parse', 'ImportController@parseImport')->name('import_parse');
+Route::post('/import_process', 'ImportController@processImport')->name('import_process');
+
 Route::resource('imagens', 'ImageController')->except([
     'edit', 'show', 'update'
 ]);

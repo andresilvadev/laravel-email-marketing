@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class Newsletter extends Mailable
 {
     use Queueable, SerializesModels;
+
     /**
      * @var Client
      */
@@ -41,8 +42,8 @@ class Newsletter extends Mailable
     {
         return $this->view('templates.email')
             ->with([
-                'clientName' => $this->client->name . " " . $this->client->last_name,
-                'clientCompany' => $this->client->company,
+                'clientName' => $this->client->nome,
+                'clientCompany' => $this->client->empresa,
                 'imageName' => $this->image->url
             ]);
     }

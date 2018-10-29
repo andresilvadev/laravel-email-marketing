@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\CsvData;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -40,9 +41,9 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'nome' => 'required',
+            'empresa' => 'required',
             'email' => 'required',
-            'company' => 'required'
         ]);
 
         if($validator->fails()){
@@ -52,12 +53,12 @@ class ClientsController extends Controller
                 ->withInput();
         } else {
             $client = new Client();
-            $client->name = $request->input('name');
+            $client->nome = $request->input('nome');
+            $client->empresa = $request->input('empresa');
             $client->email = $request->input('email');
-            $client->company = $request->input('company');
             $client->save();
 
-            return redirect('clients')->with('success','Cliente '. $client->name .' criado com sucesso!');
+            return redirect('clients')->with('success','Cliente '. $client->nome .' criado com sucesso!');
         }
     }
 
@@ -88,9 +89,9 @@ class ClientsController extends Controller
     public function update(Request $request, Client $client)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'nome' => 'required',
+            'empresa' => 'required',
             'email' => 'required',
-            'company' => 'required',
         ]);
 
         if($validator->fails()){
@@ -100,7 +101,7 @@ class ClientsController extends Controller
                 ->withInput();
         } else {
             $client->update($request->all());
-            return redirect('clients')->with('success','Cliente '. $request->name .' autalizado com sucesso!');
+            return redirect('clients')->with('success','Client '. $request->nome .' autalizado com sucesso!');
         }
     }
 
@@ -114,4 +115,5 @@ class ClientsController extends Controller
         $client->delete();
         return redirect()->route('clients.index')->with('success','Cliente excluído com sucesso!');
     }
+
 }
