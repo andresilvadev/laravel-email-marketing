@@ -1,0 +1,6 @@
+Gerente de vendas,Casa,gvendasvamilly@gmail.com
+Supervisor de vendas,Casa,svendasvamilly@gmail.com
+Financeiro,Casa,financeirovamilly@gmail.com
+Comercial,Casa,comercialvamilly@gmail.com
+Andre Luiz da Silva,Casa,andre.silva@vamilly.com.br
+Andre Batista da Silva,Casa,andreluiz1013@hotmail.com
