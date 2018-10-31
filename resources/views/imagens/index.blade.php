@@ -5,14 +5,20 @@
 	<hr>
 
 	@if ($message = Session::get('success'))
-		<div class="alert alert-success">
-			<p>{{ $message }}</p>
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ $message }}
 		</div>
 	@endif
 
 	@if ($message = Session::get('fail'))
-		<div class="alert alert-danger">
-			<p>{{ $message }}</p>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ $message }}
 		</div>
 	@endif
 
@@ -20,6 +26,15 @@
 	<a href="{{ url('imagens/create') }}" class="btn btn-primary float-right">Carregar nova imagem</a>
 	</div>
 	<br>
+
+	@if (count($images) == 0)
+		<div class="alert alert-info alert-dismissible fade show" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			Nenhuma imagem cadastrado até o momento...
+		</div>
+	@endif
 
 	<div class="row">
 	@foreach($images as $image)

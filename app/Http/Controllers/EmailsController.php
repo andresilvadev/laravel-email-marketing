@@ -56,7 +56,7 @@ class EmailsController extends Controller
 
             $email->name = $request->input('name');
             $email->subject = $request->input('subject');
-
+            $email->body = $request->input('body');
             $email->save();
 
             return redirect('emails')->with('success','E-mail '. $email->name .' criado com sucesso!');
@@ -65,36 +65,37 @@ class EmailsController extends Controller
     }
 
     /**
-     * @param $id
+     * @param Email $email
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(Email $email)
     {
-        $email = Email::findOrFail($id);
-        return view('emails.show', compact('email'));
+        return view('emails.show',compact('email'));
     }
 
+
     /**
-     * @param $id
+     * @param Email $email
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Email $email)
     {
-        $email = Email::findOrFail($id);
         return view('emails.edit', compact('email'));
     }
 
 
     /**
      * @param Request $request
-     * @param $id
+     * @param Email $email
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Email $email)
     {
+
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:emails|max:255',
-            'subject' => 'required|max:45',
+            'name' => 'required|unique:emails,id|max:255',
+            'subject' => 'required|max:70',
+            'body' => 'required',
         ]);
 
         if($validator->fails()){
@@ -103,13 +104,8 @@ class EmailsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }  else {
-
-            $email = Email::findOrFail($id);
-            $email->name = $request->name;
-            $email->subject = $request->subject;
-            $email->save();
-
-            return redirect('groups')->with('success', 'E-mail '. $email->name .' atualizado com sucesso!');
+            $email->update($request->all());
+            return redirect('emails')->with('success', 'E-mail '. $request->name .' atualizado com sucesso!');
         }
     }
 
@@ -117,13 +113,12 @@ class EmailsController extends Controller
     /**
      * @param Email $email
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Email $email)
     {
-        return redirect()->route('groups.index')->with('success','E-mail '. $email->name .' deletado com sucesso');
+        $email->delete();
+        return redirect()->route('emails.index')->with('success','E-mail excluído com sucesso!');
     }
 
-    public function config() {
-
-    }
 }

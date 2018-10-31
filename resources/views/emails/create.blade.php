@@ -25,14 +25,14 @@
 			</div>
 			<div class="form-group {{ $errors->has('subject') ? 'is-invalid' : '' }}">
 				<label for="subject">Assunto:</label>
-				<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="subject" >
+				<input type="text" class="form-control {{ $errors->has('subject') ? 'is-invalid' : '' }}" name="subject" >
 			</div>
 		</div>
 	</div>
 
 	<div class="input-group">
-		{{--<textarea class="form-control" id="summernote" name="body"></textarea>--}}
-		<textarea class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="summernote" name="body"></textarea>
+		<label for="name">Corpo da mensagem:</label>
+		<textarea class="form-control" id="summernote" name="body"></textarea>
 	</div>
 
 	<br>
