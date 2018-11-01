@@ -33,7 +33,7 @@
 	<div class="grid">
 		<div class="list-group">
 			@foreach($emails as $email)
-			<a href="{{ route('emails.show', $email->id) }}" class="list-group-item list-group-item-action">{{ $email->name }}</a>
+			<a href="{{ route('emails.show', $email->id) }}" class="list-group-item list-group-item-action">Cód: {{ $email->id}} - {{ $email->name }}</a>
 			@endforeach
 		</div>
 	</div>

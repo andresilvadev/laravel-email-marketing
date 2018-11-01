@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Email;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use Validator;
 
 class EmailsController extends Controller
@@ -43,6 +45,7 @@ class EmailsController extends Controller
             'name' => 'required|unique:emails|max:255',
             'subject' => 'required|max:70',
             'body' => 'required',
+            'image' => 'mimes:jpeg,jpg,gif,png',
         ]);
 
         if($validator->fails()){
@@ -53,10 +56,18 @@ class EmailsController extends Controller
         } else {
 
             $email = new Email();
-
             $email->name = $request->input('name');
             $email->subject = $request->input('subject');
             $email->body = $request->input('body');
+
+            if(Input::hasFile('image')) {
+                $dir = 'uploads/email_images';
+                $extension = strtolower($request->file('image')->getClientOriginalExtension());
+                $fileName = str_random(50) . '_' . date('Y_m_d') . '.' . $extension;
+                $request->file('image')->move($dir, $fileName);
+                $email->image = $fileName;
+            }
+
             $email->save();
 
             return redirect('emails')->with('success','E-mail '. $email->name .' criado com sucesso!');
@@ -117,8 +128,21 @@ class EmailsController extends Controller
      */
     public function destroy(Email $email)
     {
-        $email->delete();
-        return redirect()->route('emails.index')->with('success','E-mail excluído com sucesso!');
+        $email = Email::find($email->id);
+
+        $imageName = $email->image;
+
+        $image_path = "uploads/email_images/".$imageName;
+
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+            $email::destroy($email->id);
+            return redirect()->route('emails.index')->with('success','E-mail excluído com sucesso!');
+        } else {
+            return redirect('emails.index')->with('fail','Erro ao excluír e-mail!');
+        }
+
+
     }
 
 }

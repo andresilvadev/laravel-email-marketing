@@ -37,12 +37,17 @@
 		</div>
 
 		<br>
-
 		<div class="input-group">
 			<textarea class="form-control" id="summernote" name="body"  value="{{ $email->body }}" required>{!! $email->body !!}</textarea>
+		</div>
+		<br>
+
+		<div class="text-center">
+			<img src="{{ asset('uploads/email_images/'. $email->image )}}" class="rounded img-thumbnail" width="auto" alt="...">
 		</div>
 
 		<br>
 		<button type='submit' class='btn btn-primary btn-lg'>Atualizar e-mail</button>
+		<br>
 	</form>
 @stop

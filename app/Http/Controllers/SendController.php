@@ -33,16 +33,20 @@ class SendController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * Send email for all clients
      */
-    public function send_all()
+    public function send_all($email_id)
     {
         $clients = \App\Client::all();
+
         $count = 0;
 
         if($clients->count() > 0) {
             foreach ($clients as $client) {
                 $client = \App\Client::findOrFail($client->id);
-                $image = \App\Image::findOrFail('1'); // Enviando manualmente a imagem id
-                \Mail::to($client)->send(new \App\Mail\Newsletter($client, $image));
+
+                $email = Email::findOrFail($email_id);
+
+                \Mail::to($client)->send(new \App\Mail\Newsletter($client, $email));
+
                 $count++;
             }
 

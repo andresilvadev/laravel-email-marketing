@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-dark navbar-laravel bg-primary text-white">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/home') }}">
             ES-Newsletter
@@ -14,7 +14,7 @@
             <ul class="navbar-nav mr-auto">
                 @if(!Auth::guest())
                     <li class="nav-item ml-2 {{ Request::is('home')? 'active':'' }}">
-                        <a class="nav-link"  href="{{ url('/home') }}">Enviar campanhas</a>
+                        <a class="nav-link"  href="{{ url('/home') }}">Principal</a>
                     </li>
                     <li class="nav-item ml-2 {{ Request::is('clients')? 'active':'' }}">
                         <a class="nav-link"  href="{{ url('/clients') }}">Clientes</a>
@@ -22,9 +22,11 @@
                     <li class="nav-item ml-2 {{ Request::is('emails')? 'active':'' }}">
                         <a class="nav-link" href="{{ url('/emails') }}">E-mails</a>
                     </li>
+                    {{--
                     <li class="nav-item ml-2 {{ Request::is('imagens')? 'active':'' }}">
                         <a class="nav-link" href="{{ url('/imagens') }}">Imagens</a>
                     </li>
+                    --}}
                 @endif
             </ul>
 

@@ -2,34 +2,32 @@
 
 @section('content')
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    @if ($message = Session::get('fail'))
-        <div class="alert alert-danger">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    <form action="{{ url('/send_email_all_clients') }}" method="GET">
-        {{ csrf_field() }}
-        <div class="jumbotron">
-            <h1 class="display-4">E-mail marketing!</h1>
-            <p class="lead m-1">Para enviar e-mails para todos os clientes cadastrado basta apenas clicar no botão enviar campanha.</p>
-            <hr class="my-4">
-            <p class="lead m-1">Ou se achar necessário criar uma nova campanha sinta-se a vontade.</p><br>
-
-            <div class="clearfix">
-                <div class="float-right">
-                    <button type="submit" class="btn btn-primary btn-lg"> Enviar campanha</button>
-                    <a class="btn btn-success btn-lg" href="#" role="button"> Nova campanha</a>
+    <div class="row mt-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="card-header bg-success text-white">
+                    Clientes
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Total de clientes cadastrados</h5>
+                    <p class="card-text">{{ count($clientes) }}</p>
+                    <a href="{{route('clients.index')}}" class="btn btn-success">Ver clientes</a>
                 </div>
             </div>
-
         </div>
-    </form>
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="card-header bg-secondary text-white">
+                    E-mails
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Total de campanhas de e-mails</h5>
+                    <p class="card-text">{{ count($emails) }}</p>
+                    <a href="{{route('emails.index')}}" class="btn btn-secondary">Ver e-mails</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 @endsection

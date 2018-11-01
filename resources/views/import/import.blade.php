@@ -23,10 +23,11 @@
             <label for="csv_file" class="col-md-4 control-label">Seleciono o arquivo CSV</label>
 
             <div class="col-md-6">
-                <input id="csv_file" type="file" class="form-control-file" name="csv_file" required>
+                <input id="csv_file" type="file" class="form-control-file" name="csv_file">
             </div>
         </div>
 
+        {{--
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <div class="checkbox">
@@ -36,6 +37,7 @@
                 </div>
             </div>
         </div>
+        --}}
 
         <div class="form-group">
             <div class="col-md-8 col-md-offset-4">

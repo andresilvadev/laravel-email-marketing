@@ -17,7 +17,7 @@
 @endif
 
 <div class="clearfix">
-	<a href="{{ url('import') }}" class="btn btn-secondary float-right ml-2">Importar clientes CSV</a>
+	<a href="{{ url('import') }}" class="btn btn-secondary float-right ml-2">Importar clientes CSV / TXT</a>
 	<a href="{{ url('clients/create') }}" class="btn btn-primary float-right">Cadastrar novo cliente</a>
 </div>
 
@@ -30,8 +30,8 @@
             <tr>
                 <th>Cod</th>
 				<th>Nome</th>
-				<th>E-mail</th>
 				<th>Empresa</th>
+				<th>E-mail</th>
 				<th width="220px" class="text-center">Ações</th>
             </tr>
         </thead>
@@ -40,8 +40,8 @@
 				<tr>
 					<td>{{ $client->id }}</td>
 					<td>{{ $client->nome }}</td>
-					<td>{{ $client->email }}</td>
 					<td>{{ $client->empresa }}</td>
+					<td>{{ $client->email }}</td>
 					<td>
 						<form id="frm_{{ $client->id }}" action="{{ route('clients.destroy',$client->id) }}" method="POST">
 							<div class="row">

@@ -19,6 +19,7 @@ class CreateEmailsTable extends Migration
             $table->string('name');
             $table->string('subject');
             $table->longText('body');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

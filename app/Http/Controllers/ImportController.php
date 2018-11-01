@@ -43,6 +43,14 @@ class ImportController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * Pega o arquivo CsvData pelo id e depois converte para json
+     * Para cada dado passa para uma linha
+     * Se na posição dois do array que é o email ele já existir na base de dados, então vai ser atualizado o cliente
+     * Senão vai ser criado um novo cliente
+     */
     public function processImport(Request $request)
     {
         $data = CsvData::find($request->csv_data_file_id);
@@ -52,11 +60,21 @@ class ImportController extends Controller
 
             //print_r($row[2]); // ROW NA POSIÇÃO 2 PEGA CADA EMAIL
 
-            $client = new Client();
-            foreach (config('app.db_fields') as $index => $field) {
-                $client->$field = $row[$request->fields[$index]];
+            $client = Client::where('email', $row[2])->first();
+
+            if($client) {
+                $client->nome = $row[0];
+                $client->empresa = $row[1];
+                $client->email = $row[2];
+                $client->save();
+            } else {
+                $client = new Client();
+                foreach (config('app.db_fields') as $index => $field) {
+                    $client->$field = $row[$request->fields[$index]];
+                }
+                $client->save();
             }
-            $client->save();
+
         }
 
         return redirect('clients')->with('success','Lista de clientes importada com sucesso!');

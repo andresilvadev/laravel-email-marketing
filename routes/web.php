@@ -31,5 +31,5 @@ Route::post('/import_process', 'ImportController@processImport')->name('import_p
 
 # Send email to client with id user in params
 Route::get('/send_email/{id}','SendController@send_email')->name('email.client');
-Route::get('/send_email_all_clients','SendController@send_all')->name('email.all.clients');
+Route::get('/send_email_all_clients/{email_id}','SendController@send_all')->name('email.all.clients');
 Route::get('/config/email','EmailsController@config')->name('email.config');

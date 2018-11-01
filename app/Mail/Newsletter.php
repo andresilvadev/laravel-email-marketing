@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Client;
+use App\Email;
 use App\Image;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -21,16 +22,21 @@ class Newsletter extends Mailable
      * @var Image
      */
     private $image;
+    /**
+     * @var Email
+     */
+    private $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Client $client, Image $image)
+    public function __construct(Client $client, Email $email)
     {
         $this->client = $client;
-        $this->image = $image;
+        $this->email = $email;
+        //$this->image = $image;
     }
 
     /**
@@ -40,11 +46,14 @@ class Newsletter extends Mailable
      */
     public function build()
     {
-        return $this->view('templates.email')
+        return $this->view('templates.newsletter')
             ->with([
                 'clientName' => $this->client->nome,
                 'clientCompany' => $this->client->empresa,
-                'imageName' => $this->image->url
+                'emailName' => $this->email->name,
+                'emailSubject' => $this->email->subject,
+                'emailBody' => $this->email->body,
+                'emailImage' => $this->email->image,
             ]);
     }
 }
