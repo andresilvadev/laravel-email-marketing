@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "codemirror": "^5.40.2",
-        "datatables.net": "^1.10.19",
+        "datatables.net": "^1.10.22",
         "datatables.net-dt": "^1.10.19",
         "imagesloaded": "^4.1.4",
         "jquery-bridget": "^2.0.1",
