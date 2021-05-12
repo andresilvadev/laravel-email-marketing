@@ -20,7 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "codemirror": "^5.40.2",
+        "codemirror": "^5.58.2",
         "datatables.net": "^1.10.19",
         "datatables.net-dt": "^1.10.19",
         "imagesloaded": "^4.1.4",
